@@ -1,0 +1,36 @@
+{
+  "name": "@dojofoo/starter",
+  "version": "0.0.1",
+  "description": "A minimal, complete TypeScript dojo for learning and authoring with dojofoo.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dojofoo/starter.git"
+  },
+  "homepage": "https://github.com/dojofoo/starter#readme",
+  "bugs": { "url": "https://github.com/dojofoo/starter/issues" },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "katas",
+    "skills",
+    "DOJO.md",
+    "README.md",
+    "dojo.json",
+    "tsconfig.json",
+    "vitest.config.ts"
+  ],
+  "scripts": {
+    "test": "vitest run test/template.test.ts",
+    "test:katas": "vitest run katas",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.2",
+    "@vitest/coverage-v8": "4.1.10",
+    "typescript": "6.0.3",
+    "vitest": "^4.1.10"
+  }
+}
