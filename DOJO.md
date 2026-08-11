@@ -1,6 +1,6 @@
-# Starter TypeScript Dojo
+# Starter TypeScript
 
-This compact dojo demonstrates the complete dojofoo course format through three connected TypeScript exercises.
+Learn to set up a TypeScript course with Dojofoo through three connected example exercises.
 
 ## Teaching rules
 

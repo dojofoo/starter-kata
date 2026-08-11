@@ -2,8 +2,11 @@
   "$schema": "https://dojo.foo/schema/v1/dojo.json",
   "name": "@dojofoo/starter",
   "version": "0.0.1",
-  "description": "Learn a small TypeScript domain while exploring the complete dojofoo lesson format.",
-  "author": "dojofoo",
+  "description": "Learn to set up a TypeScript course with Dojofoo.",
+  "author": "Tom Siwik",
+  "language": "TypeScript",
+  "framework": "Dojofoo",
+  "tags": ["Course authoring", "Starter"],
   "homepage": "https://github.com/dojofoo/starter",
   "repository": "https://github.com/dojofoo/starter",
   "runner": {
@@ -17,14 +20,14 @@
       "template": "katas/001-normalize-handle/solution.ts",
       "description": "Turn a loose user handle into a canonical identifier.",
       "difficulty": 1,
-      "tags": ["typescript", "strings", "pure-functions"]
+      "tags": ["strings", "pure-functions"]
     },
     {
       "name": "002-validate-registration",
       "template": "katas/002-validate-registration/solution.ts",
       "description": "Represent validation outcomes with a discriminated union.",
       "difficulty": 2,
-      "tags": ["typescript", "unions", "validation"],
+      "tags": ["unions", "validation"],
       "prerequisites": ["001-normalize-handle"]
     },
     {
@@ -32,7 +35,7 @@
       "template": "katas/003-summarize-roster/solution.ts",
       "description": "Summarize immutable domain data into a small report.",
       "difficulty": 2,
-      "tags": ["typescript", "arrays", "immutability"],
+      "tags": ["arrays", "immutability"],
       "prerequisites": ["002-validate-registration"]
     }
   ]

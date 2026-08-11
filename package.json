@@ -1,7 +1,7 @@
 {
   "name": "@dojofoo/starter",
   "version": "0.0.1",
-  "description": "A minimal, complete TypeScript dojo for learning and authoring with dojofoo.",
+  "description": "Learn to set up a TypeScript course with Dojofoo.",
   "type": "module",
   "license": "MIT",
   "repository": {

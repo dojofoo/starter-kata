@@ -1,6 +1,6 @@
-# @dojofoo/starter
+# Starter TypeScript
 
-A minimal but complete TypeScript dojo. Use it to try dojofoo or as the reference structure for authoring a new course.
+A minimal TypeScript reference course for learning how to set up a dojo with Dojofoo.
 
 ## Try the dojo
 
