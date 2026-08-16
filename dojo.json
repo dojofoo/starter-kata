@@ -1,14 +1,15 @@
 {
   "$schema": "https://dojo.foo/schema/v1/dojo.json",
-  "name": "@dojofoo/starter",
+  "mode": "katas",
+  "name": "@dojofoo/starter-kata",
   "version": "0.0.1",
   "description": "Learn to set up a TypeScript course with Dojofoo.",
   "author": "Tom Siwik",
   "language": "TypeScript",
   "framework": "Dojofoo",
   "tags": ["Course authoring", "Starter"],
-  "homepage": "https://github.com/dojofoo/starter",
-  "repository": "https://github.com/dojofoo/starter",
+  "homepage": "https://github.com/dojofoo/starter-kata",
+  "repository": "https://github.com/dojofoo/starter-kata",
   "runner": {
     "adapter": "vitest",
     "coverage": true

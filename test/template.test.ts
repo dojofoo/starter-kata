@@ -5,21 +5,21 @@ import { describe, expect, it } from "vitest";
 const root = resolve(import.meta.dirname, "..");
 const read = (path: string) => readFileSync(resolve(root, path), "utf8");
 
-describe("@dojofoo/starter", () => {
+describe("@dojofoo/starter-kata", () => {
   it("is a standalone GitHub-installable dojo", () => {
     const packageJson = JSON.parse(read("package.json"));
     const manifest = JSON.parse(read("dojo.json"));
 
     expect(packageJson).toMatchObject({
-      name: "@dojofoo/starter",
+      name: "@dojofoo/starter-kata",
       repository: {
         type: "git",
-        url: "https://github.com/dojofoo/starter.git",
+        url: "https://github.com/dojofoo/starter-kata.git",
       },
     });
     expect(manifest).toMatchObject({
-      name: "@dojofoo/starter",
-      repository: "https://github.com/dojofoo/starter",
+      name: "@dojofoo/starter-kata",
+      repository: "https://github.com/dojofoo/starter-kata",
       runner: { adapter: "vitest", coverage: true },
       test: "npx vitest run {template}",
     });

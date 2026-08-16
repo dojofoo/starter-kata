@@ -5,7 +5,7 @@ description: Teach the dojofoo starter's TypeScript katas through contracts, tes
 
 # Starter Sensei
 
-Use this skill when teaching any kata in `@dojofoo/starter`.
+Use this skill when teaching any kata in `@dojofoo/starter-kata`.
 
 1. Read `DOJO.md`, the current `KATA.md`, and the current `SENSEI.md`.
 2. Determine the current kata and test state with `npx dojofoo status` and `npx dojofoo kata --check --reporter=json` when appropriate.

@@ -1,15 +1,15 @@
 {
-  "name": "@dojofoo/starter",
+  "name": "@dojofoo/starter-kata",
   "version": "0.0.1",
   "description": "Learn to set up a TypeScript course with Dojofoo.",
   "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dojofoo/starter.git"
+    "url": "https://github.com/dojofoo/starter-kata.git"
   },
-  "homepage": "https://github.com/dojofoo/starter#readme",
-  "bugs": { "url": "https://github.com/dojofoo/starter/issues" },
+  "homepage": "https://github.com/dojofoo/starter-kata#readme",
+  "bugs": { "url": "https://github.com/dojofoo/starter-kata/issues" },
   "publishConfig": {
     "access": "public"
   },

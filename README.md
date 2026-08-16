@@ -1,12 +1,14 @@
 # Starter TypeScript
 
 A minimal TypeScript reference course for learning how to set up a dojo with Dojofoo.
+It explicitly uses the `katas` course mode. For the authored presentation and
+question flow, see the sibling `dojofoo/starter-interactive` template.
 
 ## Try the dojo
 
 ```sh
 npx dojofoo install
-npx dojofoo add dojofoo/starter
+npx dojofoo add dojofoo/starter-kata
 ```
 
 Then run `/kata` in your configured coding agent or start `npx dojofoo ui`.
@@ -31,6 +33,8 @@ The package intentionally contains no completed solutions.
 ## Required package contract
 
 - `dojo.json` defines ordered kata templates and runner behavior.
+- `mode: "katas"` makes the course's learning contract explicit. Older kata
+  manifests that omit it remain compatible.
 - `DOJO.md` defines course-wide teaching boundaries.
 - `skills/` contains optional domain context linked into supported harnesses.
 - `vitest.config.ts` aliases learner work from the host project's `katas/` directory.
@@ -43,7 +47,7 @@ The GitHub repository is the source of truth. A successful public install report
 Updates use the same source identity:
 
 ```sh
-npx dojofoo update dojofoo/starter
+npx dojofoo update dojofoo/starter-kata
 ```
 
 Updating replaces the installed course material only. Learner work, progress, discussions, and notes remain in the project.
