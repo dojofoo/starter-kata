@@ -18,7 +18,8 @@
     "skills",
     "DOJO.md",
     "README.md",
-    "dojo.json",
+    "dojo.yaml",
+    "mise.toml",
     "tsconfig.json",
     "vitest.config.ts"
   ],
@@ -31,6 +32,7 @@
     "@types/node": "^26.1.2",
     "@vitest/coverage-v8": "4.1.10",
     "typescript": "6.0.3",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.10",
+    "yaml": "^2.9.0"
   }
 }

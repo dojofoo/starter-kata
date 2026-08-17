@@ -1,0 +1,6 @@
+[tools]
+node = "24"
+
+[tasks.setup]
+description = "Install the kata runner from its lockfile"
+run = "npm ci"

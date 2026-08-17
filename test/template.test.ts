@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
+import { parse as parseYaml } from "yaml";
 
 const root = resolve(import.meta.dirname, "..");
 const read = (path: string) => readFileSync(resolve(root, path), "utf8");
@@ -8,7 +9,7 @@ const read = (path: string) => readFileSync(resolve(root, path), "utf8");
 describe("@dojofoo/starter-kata", () => {
   it("is a standalone GitHub-installable dojo", () => {
     const packageJson = JSON.parse(read("package.json"));
-    const manifest = JSON.parse(read("dojo.json"));
+    const manifest = parseYaml(read("dojo.yaml"));
 
     expect(packageJson).toMatchObject({
       name: "@dojofoo/starter-kata",
@@ -27,7 +28,7 @@ describe("@dojofoo/starter-kata", () => {
   });
 
   it("contains the complete teaching contract without answer files", () => {
-    const manifest = JSON.parse(read("dojo.json"));
+    const manifest = parseYaml(read("dojo.yaml"));
     for (const kata of manifest.katas) {
       const directory = resolve(root, kata.template, "..");
       for (const file of ["KATA.md", "SENSEI.md", "solution.ts", "solution.test.ts"]) {

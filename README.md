@@ -16,7 +16,7 @@ Then run `/kata` in your configured coding agent or start `npx dojofoo ui`.
 ## Use it as an authoring template
 
 1. Use this repository as a GitHub template or copy it into a new repository.
-2. Rename the npm package and `dojo.json` manifest.
+2. Rename the package metadata and documented `dojo.yaml` manifest.
 3. Replace the course description and `DOJO.md` teaching rules.
 4. Replace the sample katas while retaining their file contract.
 5. Run the kata tests against private reference implementations, restore the learner scaffolds, then run `npm pack --dry-run` before publishing.
@@ -32,9 +32,12 @@ The package intentionally contains no completed solutions.
 
 ## Required package contract
 
-- `dojo.json` defines ordered kata templates and runner behavior.
+- `dojo.yaml` defines ordered kata templates and runner behavior, with comments
+  that explain the authoring contract inline. JSON remains supported.
 - `mode: "katas"` makes the course's learning contract explicit. Older kata
   manifests that omit it remain compatible.
+- `mise.toml` pins the runtime and exposes the conventional `setup` task that
+  dojofoo runs before executable course work.
 - `DOJO.md` defines course-wide teaching boundaries.
 - `skills/` contains optional domain context linked into supported harnesses.
 - `vitest.config.ts` aliases learner work from the host project's `katas/` directory.

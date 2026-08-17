@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://dojo.foo/schema/v1/dojo.json
+
+# `katas` is explicit here so this repository documents the complete contract.
+# Existing kata dojos that omit `mode` continue to default to `katas`.
+mode: katas
+name: "@dojofoo/starter-kata"
+version: 0.0.1
+description: Learn to set up a TypeScript course with Dojofoo.
+author: Tom Siwik
+language: TypeScript
+framework: Dojofoo
+tags:
+  - Course authoring
+  - Starter
+homepage: https://github.com/dojofoo/starter-kata
+repository: https://github.com/dojofoo/starter-kata
+
+# mise installs the course toolchain before dojofoo starts an executable lesson.
+# The setup task is defined in mise.toml and uses this package's lockfile.
+runner:
+  adapter: vitest
+  coverage: true
+test: npx vitest run {template}
+
+katas:
+  - name: 001-normalize-handle
+    template: katas/001-normalize-handle/solution.ts
+    description: Turn a loose user handle into a canonical identifier.
+    difficulty: 1
+    tags: [strings, pure-functions]
+
+  - name: 002-validate-registration
+    template: katas/002-validate-registration/solution.ts
+    description: Represent validation outcomes with a discriminated union.
+    difficulty: 2
+    tags: [unions, validation]
+    prerequisites: [001-normalize-handle]
+
+  - name: 003-summarize-roster
+    template: katas/003-summarize-roster/solution.ts
+    description: Summarize immutable domain data into a small report.
+    difficulty: 2
+    tags: [arrays, immutability]
+    prerequisites: [002-validate-registration]
