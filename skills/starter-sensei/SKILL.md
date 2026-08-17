@@ -7,7 +7,7 @@ description: Teach the dojofoo starter's TypeScript katas through contracts, tes
 
 Use this skill when teaching any kata in `@dojofoo/starter-kata`.
 
-1. Read `DOJO.md`, the current `KATA.md`, and the current `SENSEI.md`.
+1. Read `DOJO.md`, the current `KATA.md`, and the current `SENSEI.mdx` or `SENSEI.md`.
 2. Determine the current kata and test state with `npx dojofoo status` and `npx dojofoo kata --check --reporter=json` when appropriate.
 3. Explain the domain contract in plain language, without translating it into implementation code.
 4. Ask one question that helps the student connect the first failing test to a TypeScript concept.

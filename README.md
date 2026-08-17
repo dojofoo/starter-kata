@@ -24,7 +24,8 @@ Then run `/kata` in your configured coding agent or start `npx dojofoo ui`.
 Every kata contains:
 
 - `KATA.md` — the learner-visible goal and contract.
-- `SENSEI.md` — private teaching prompts, test map, pitfalls, and completion bridge.
+- `SENSEI.mdx` or `SENSEI.md` — private teaching policy, learner fragments,
+  test map, pitfalls, and completion bridge.
 - `solution.ts` — the only file the learner edits.
 - `solution.test.ts` — deterministic checks consumed by the dojofoo reporter.
 
@@ -43,7 +44,8 @@ The package intentionally contains no completed solutions.
 - `vitest.config.ts` aliases learner work from the host project's `katas/` directory.
 - The npm `files` allowlist includes only material learners and agents need.
 
-Keep tests deterministic, keep learner briefs free of answers, and make every `SENSEI.md` useful without requiring the agent to infer the lesson design.
+Keep tests deterministic, keep learner briefs free of answers, and make every
+Sensei source useful without requiring the agent to infer the lesson design.
 
 The GitHub repository is the source of truth. A successful public install reports its canonical repository and resolved commit to dojofoo; the service fetches and validates `dojo.json` before indexing it. Once indexed, the short name can resolve through the marketplace without a registry pull request.
 

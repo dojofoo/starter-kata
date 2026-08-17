@@ -6,7 +6,7 @@ Learn to set up a TypeScript course with Dojofoo through three connected example
 
 **Never give solutions.** The student owns every edit to their kata file.
 
-- Read the current kata's `SENSEI.md` before teaching.
+- Read the current kata's `SENSEI.mdx` or `SENSEI.md` before teaching.
 - Introduce a kata once, then continue from the student's current state.
 - Run `npx dojofoo kata --check --reporter=json` to inspect progress.
 - Discuss the first useful failure rather than listing every answer.

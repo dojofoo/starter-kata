@@ -1,0 +1,160 @@
+# SENSEI — 001 Normalize a Handle
+
+## Briefing
+
+### Goal
+
+Build a small pure function that converts a display name into a stable handle.
+
+### Tasks
+
+Trim outer whitespace, lowercase letters, and collapse each internal whitespace
+run into one hyphen. Empty or whitespace-only input remains empty.
+
+## Prerequisites
+
+Basic TypeScript functions and string methods. Regular-expression syntax is
+explicitly taught here; never assume the learner already knows it.
+
+## Skills
+
+Invoke `starter-sensei` before teaching this kata.
+
+<TeachingPolicy>
+Begin with one open question about the transformation pipeline. Questions may
+probe reasoning the learner can derive from material already presented; they
+must not test recall of regex syntax that has not been taught.
+
+Use this progression for each missing concept:
+
+1. Explore with one concrete example.
+2. Ground the concept by presenting the relevant authored fragment.
+3. Contrast the learner's current behavior with the intended behavior.
+4. Explain directly after “I don't know” or two unsuccessful attempts.
+5. Ask the learner to apply one small change.
+6. Verify transfer with a different input.
+
+Treat “I don't know”, “I don't remember”, and a request for syntax as evidence
+that direct instruction is needed. Do not rephrase the same recall question.
+Do not ask “which flag?” or “which quantifier?” before presenting the fragment
+that teaches it.
+
+Never repeat advice merely because Save or Check occurred. Those actions are
+silent. When the learner sends a message, use the attached test evidence only
+if it adds something relevant.
+</TeachingPolicy>
+
+<Stage id="pipeline">
+  <Objective>Recognize normalization as a sequence of small transformations.</Objective>
+
+  <Probe>
+    Ask what intermediate value trimming produces for `"  Ada Lovelace  "`.
+    This is derivable from the stated goal, so no presentation is required first.
+  </Probe>
+
+  <Hint level="1">
+    Contrast characters outside the name with whitespace between its words.
+  </Hint>
+
+  <Explain level="2">
+    Explain that trimming removes only leading and trailing whitespace. Then ask
+    the learner to predict the intermediate value, not to remember a method name.
+  </Explain>
+</Stage>
+
+<Stage id="whitespace-class">
+  <Objective>Understand that `\s` denotes whitespace in a regular expression.</Objective>
+
+  <Present id="whitespace-class">
+    ### Matching whitespace
+
+    A regular expression describes text to find. The pattern `\s` means one
+    whitespace character: a space, tab, or newline.
+
+    In a regex literal it is written `/\s/`. In `new RegExp(...)`, the pattern is
+    itself a JavaScript string, so its backslash must be escaped:
+
+    ```ts
+    new RegExp("\\s")
+    ```
+
+    <RegexWorkbench input="Ada   Lovelace" pattern="\s" flags="" replacement="-" />
+  </Present>
+
+  <Probe>
+    After presenting `whitespace-class`, ask the learner to explain why `"\s"`
+    in the constructor does not preserve the regex backslash but `"\\s"` does.
+  </Probe>
+</Stage>
+
+<Stage id="whitespace-runs">
+  <Objective>Understand how `+` groups adjacent whitespace into one match.</Objective>
+
+  <Present id="whitespace-runs">
+    ### Matching a complete run
+
+    `+` means “one or more of the thing immediately before me.” Therefore `\s+`
+    treats a space followed by a tab and another space as one match.
+
+    By contrast, `*` means “zero or more”. A zero-length match can occur between
+    letters, which is why using `*` during replacement may insert extra hyphens.
+
+    <RegexWorkbench input="Ada   Lovelace" pattern="\s+" flags="" replacement="-" />
+  </Present>
+
+  <Probe>
+    After presenting `whitespace-runs`, ask why `+` produces one hyphen for three
+    adjacent spaces while `*` can also match between letters.
+  </Probe>
+</Stage>
+
+<Stage id="global-replacement">
+  <Objective>Understand that `g` continues matching throughout the input.</Objective>
+
+  <Present id="global-replacement">
+    ### Replacing every run
+
+    The `g` flag means “global”: after one match is replaced, continue searching
+    through the rest of the string.
+
+    The three responsibilities remain separate:
+
+    - `\s` selects whitespace.
+    - `+` groups adjacent whitespace.
+    - `g` finds every such group.
+
+    <RegexWorkbench input="Ada   Augusta   Lovelace" pattern="\s+" flags="g" replacement="-" />
+  </Present>
+
+  <Probe>
+    After presenting `global-replacement`, ask the learner to predict how the
+    result differs with and without `g` for a three-word name.
+  </Probe>
+</Stage>
+
+## Test Map
+
+| Test | Concept | Verifies |
+|------|---------|----------|
+| trims and lowercases | transformation pipeline | outer whitespace and casing |
+| collapses mixed whitespace | `\s`, `+`, and `g` | a mixed run becomes one separator |
+| leaves canonical input unchanged | idempotence | a normalized value remains stable |
+| handles whitespace-only input | boundary case | no accidental hyphen is produced |
+
+## Common misconceptions
+
+- A literal `s` matches the letter s, not whitespace. Present `whitespace-class`.
+- `\s` without `+` matches each whitespace character separately. Present `whitespace-runs`.
+- A pattern without `g` replaces only its first match. Present `global-replacement`.
+- `*` permits zero characters. Contrast it with `+`; do not merely ask for the name.
+
+## On Completion
+
+### Insight
+
+A pure normalization boundary makes every later domain operation consume one
+stable representation.
+
+### Bridge
+
+The next kata uses that canonical value inside an explicit success-or-failure result.

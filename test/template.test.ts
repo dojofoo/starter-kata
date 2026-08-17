@@ -31,9 +31,10 @@ describe("@dojofoo/starter-kata", () => {
     const manifest = parseYaml(read("dojo.yaml"));
     for (const kata of manifest.katas) {
       const directory = resolve(root, kata.template, "..");
-      for (const file of ["KATA.md", "SENSEI.md", "solution.ts", "solution.test.ts"]) {
+      for (const file of ["KATA.md", "solution.ts", "solution.test.ts"]) {
         expect(existsSync(resolve(directory, file))).toBe(true);
       }
+      expect(["SENSEI.mdx", "SENSEI.md"].some((file) => existsSync(resolve(directory, file)))).toBe(true);
     }
     expect(existsSync(resolve(root, "skills/starter-sensei/SKILL.md"))).toBe(true);
     expect(read("DOJO.md")).toContain("Never give solutions");
