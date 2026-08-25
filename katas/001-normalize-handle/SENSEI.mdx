@@ -107,7 +107,8 @@ the evidence to offer one observation or invitation when it genuinely helps.
     through the `RegExp` constructor: the latter is also a JavaScript string, so
     JavaScript string escaping happens before the regex engine sees it.
 
-    <RegexWorkbench input="red   blue" pattern="\s" flags="" replacement="·" />
+    Example: applying the whitespace class once to `"red   blue"` identifies
+    only the first space. Let the learner predict that result before continuing.
   </Present>
 
   <Probe>
@@ -129,7 +130,8 @@ the evidence to offer one observation or invitation when it genuinely helps.
     A zero-length match can occur between letters, which explains why the wrong
     quantifier may insert replacement characters where no input character exists.
 
-    <RegexWorkbench input="red   blue" pattern="\s+" flags="" replacement="·" />
+    Example: in `"red   blue"`, compare matching one space at a time with
+    treating the three adjacent spaces as one match.
   </Present>
 
   <Probe>
@@ -153,7 +155,8 @@ the evidence to offer one observation or invitation when it genuinely helps.
     - a quantifier controls the size of one match;
     - a flag controls whether searching continues.
 
-    <RegexWorkbench input="cat, dog, cat" pattern="cat" flags="g" replacement="fox" />
+    Example: use `"cat, dog, cat"` to contrast replacing only the first `cat`
+    with continuing the search through the whole string.
   </Present>
 
   <Probe>
