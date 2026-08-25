@@ -16,16 +16,13 @@ run into one hyphen. Empty or whitespace-only input remains empty.
 Basic TypeScript functions and string methods. Regular-expression syntax is
 explicitly taught here; never assume the learner already knows it.
 
-## Skills
-
-Invoke `starter-sensei` before teaching this kata.
-
 <TeachingPolicy>
-Begin with one open question about the transformation pipeline. Questions may
-probe reasoning the learner can derive from material already presented; they
-must not test recall of regex syntax that has not been taught.
+Begin by making the transformation tangible with one familiar display name.
+Invite the learner to describe the pipeline in their own words, then follow the
+part of their answer that contains the most useful reasoning. Do not announce
+the teaching plan or describe the lesson machinery.
 
-Use this progression for each missing concept:
+Use this progression as a guide, not a script:
 
 1. Explore with one concrete example.
 2. Ground the concept by presenting the relevant authored fragment.
@@ -39,6 +36,22 @@ that direct instruction is needed. Do not rephrase the same recall question.
 Do not ask “which flag?” or “which quantifier?” before presenting the fragment
 that teaches it.
 
+Continuously estimate the learner's current level from their own words and code:
+
+- An answer that only repeats the example output does not yet show that they can
+  generalize. Contrast one fixed example with a function that handles many inputs.
+- A guessed call such as `trim(input)` shows the goal but not JavaScript's string
+  method syntax. Teach receiver-and-method syntax with an unrelated string, then
+  ask them to transfer it. Do not write the kata-specific expression.
+- A question such as “what's chaining?” means the label arrived too early. Explain
+  the concrete left-to-right flow in plain language with a different expression;
+  only then attach the term. Do not repeat their unfinished solution as the example.
+- A correct edit is stronger evidence than a correct verbal guess. Advance from
+  demonstrated understanding rather than marching through every scripted probe.
+
+Never ask for the complete transformation after the learner has already supplied
+one correct intermediate value. Use their answer to choose the next missing idea.
+
 Fragment routing is mandatory:
 
 - Unknown whitespace syntax or escaping → call `present_lesson_fragment` with
@@ -46,11 +59,19 @@ Fragment routing is mandatory:
 - Adjacent whitespace or `*` versus `+` → present `whitespace-runs`.
 - First match versus every match → present `global-replacement`.
 
-Never paraphrase a fragment instead of presenting it.
+Prefer the authored fragment when it is available. If presentation is unavailable,
+teach the same concept conversationally and continue; never tell the learner that
+an internal fragment or tool is missing.
+
+Never combine the lesson's regex pieces with the kata's replacement call on the
+learner's behalf. The final expression is part of the exercise. Use the linked MDN
+references for definitions and use unrelated examples in presentations so the
+learner must transfer the idea to handle normalization.
 
 Never repeat advice merely because Save or Check occurred. Those actions are
 silent. When the learner sends a message, use the attached test evidence only
-if it adds something relevant.
+if it adds something relevant. Respond first to the learner's intent, then use
+the evidence to offer one observation or invitation when it genuinely helps.
 </TeachingPolicy>
 
 <Stage id="pipeline">
@@ -77,17 +98,17 @@ if it adds something relevant.
   <Present id="whitespace-class">
     ### Matching whitespace
 
-    A regular expression describes text to find. The pattern `\s` means one
-    whitespace character: a space, tab, or newline.
+    A regular expression describes text to find. MDN's
+    [character-class escape reference](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Regular_expressions/Character_class_escape)
+    explains the predefined class for whitespace, including spaces, tabs, and
+    newlines.
 
-    In a regex literal it is written `/\s/`. In `new RegExp(...)`, the pattern is
-    itself a JavaScript string, so its backslash must be escaped:
+    Pay attention to MDN's distinction between a regex literal and a pattern passed
+    through the `RegExp` constructor: the latter is also a JavaScript string, so
+    JavaScript string escaping happens before the regex engine sees it.
 
-    ```ts
-    new RegExp("\\s")
-    ```
-
-    <RegexWorkbench input="Ada   Lovelace" pattern="\s" flags="" replacement="-" />
+    Example: applying the whitespace class once to `"red   blue"` identifies
+    only the first space. Let the learner predict that result before continuing.
   </Present>
 
   <Probe>
@@ -102,13 +123,15 @@ if it adds something relevant.
   <Present id="whitespace-runs">
     ### Matching a complete run
 
-    `+` means “one or more of the thing immediately before me.” Therefore `\s+`
-    treats a space followed by a tab and another space as one match.
+    Read MDN's [quantifier guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Quantifiers)
+    and compare “one or more” with “zero or more.” A quantifier applies to the item
+    immediately before it.
 
-    By contrast, `*` means “zero or more”. A zero-length match can occur between
-    letters, which is why using `*` during replacement may insert extra hyphens.
+    A zero-length match can occur between letters, which explains why the wrong
+    quantifier may insert replacement characters where no input character exists.
 
-    <RegexWorkbench input="Ada   Lovelace" pattern="\s+" flags="" replacement="-" />
+    Example: in `"red   blue"`, compare matching one space at a time with
+    treating the three adjacent spaces as one match.
   </Present>
 
   <Probe>
@@ -123,16 +146,17 @@ if it adds something relevant.
   <Present id="global-replacement">
     ### Replacing every run
 
-    The `g` flag means “global”: after one match is replaced, continue searching
-    through the rest of the string.
+    MDN's [regular-expression flags reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/global)
+    explains the flag that continues searching after the first match.
 
-    The three responsibilities remain separate:
+    Keep the responsibilities separate while you reason:
 
-    - `\s` selects whitespace.
-    - `+` groups adjacent whitespace.
-    - `g` finds every such group.
+    - the pattern selects what counts as a match;
+    - a quantifier controls the size of one match;
+    - a flag controls whether searching continues.
 
-    <RegexWorkbench input="Ada   Augusta   Lovelace" pattern="\s+" flags="g" replacement="-" />
+    Example: use `"cat, dog, cat"` to contrast replacing only the first `cat`
+    with continuing the search through the whole string.
   </Present>
 
   <Probe>
@@ -167,3 +191,29 @@ stable representation.
 ### Bridge
 
 The next kata uses that canonical value inside an explicit success-or-failure result.
+
+### Review topics
+
+When the learner chooses Review, always clarify method chaining versus currying,
+then choose two connected topics below. Ground them in the learner's actual
+expression rather than reciting every item. Another Review can explore a
+different set. Use at most three short paragraphs. Do not introduce a fourth
+topic.
+
+Accuracy constraint: `/\s+/g` replaces each complete whitespace run once. A
+leading or trailing run becomes exactly one boundary hyphen, never one hyphen
+per character in that run.
+
+- The sequence is method chaining and a transformation pipeline, not currying.
+  Currying converts a multi-argument function into nested one-argument functions.
+- Ordering is observable: trimming before replacement prevents boundary
+  whitespace from becoming separators. A whole leading or trailing whitespace
+  run would become one boundary hyphen, regardless of its length.
+- `toLowerCase()` is appropriate for a stable machine identifier;
+  `toLocaleLowerCase()` intentionally varies for locale-sensitive human text.
+  Mention Unicode normalization as a separate production concern, not a hidden
+  requirement of this kata.
+- The normalizer is idempotent: normalizing an already canonical value should
+  leave it unchanged.
+- `\s`, `+`, and `g` have separate responsibilities: character class, match
+  size, and search continuation.
