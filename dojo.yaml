@@ -3,6 +3,8 @@
 # `katas` is explicit here so this repository documents the complete contract.
 # Existing kata dojos that omit `mode` continue to default to `katas`.
 mode: katas
+# This repository is an authoring/install fixture, not a learner-facing marketplace course.
+marketplace: false
 name: "@dojofoo/starter-kata"
 version: 0.0.1
 description: Learn to set up a TypeScript course with Dojofoo.
